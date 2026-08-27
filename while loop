@@ -1,0 +1,10 @@
+Declare
+    v_counter Number :=1;
+    v_result  Number;
+Begin
+ While v_counter <=10 Loop
+v_result:=v_counter*19;
+DBMS_OUTPUT.PUT_LINE(v_result);
+v_counter:=v_counter+1;
+END Loop;
+End;
