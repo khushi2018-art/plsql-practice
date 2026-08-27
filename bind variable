@@ -1,0 +1,4 @@
+VARIABLE v_bind VARCHAR2(10); //declaration
+
+EXEC :v_bind := 'Khushi'; //assigning value
+ Print :v_bind; //displaying value
