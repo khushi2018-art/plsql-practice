@@ -1,0 +1,5 @@
+Declare
+  v_pi CONSTANT NUMBER(7,6):=3.141592;
+Begin
+  Dbms_output.put_line(v_pi);
+End;

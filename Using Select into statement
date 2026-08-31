@@ -1,0 +1,13 @@
+DECLARE
+    v_name   HR.EMPLOYEES.FIRST_NAME%TYPE;
+    v_salary HR.EMPLOYEES.SALARY%TYPE;
+BEGIN
+    SELECT FIRST_NAME, SALARY
+    INTO v_name, v_salary
+    FROM HR.EMPLOYEES
+    WHERE EMPLOYEE_ID = 101;
+ 
+    DBMS_OUTPUT.PUT_LINE('Name: ' || v_name);
+    DBMS_OUTPUT.PUT_LINE('Salary: ' || v_salary);
+END;
+/

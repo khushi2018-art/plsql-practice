@@ -1,0 +1,9 @@
+Declare 
+v_result Number;
+Begin
+For v_counter IN 1..10 Loop
+v_result:=v_counter*19;
+DBMS_OUTPUT.PUT_LINE(v_result);
+
+END Loop;
+End;

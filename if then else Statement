@@ -1,0 +1,10 @@
+Declare
+v_num Number:=&Enter_a_no;
+Begin
+If Mod(v_num,2)=0 Then
+DBMS_output.put_line(v_num || 'is even');
+Else 
+DBMS_output.put_line(v_num || 'is odd');
+End if;
+DBMS_output.put_line('Done');
+End;

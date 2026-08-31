@@ -1,0 +1,42 @@
+CREATE TABLE super (
+    sh_name VARCHAR2(20)
+);
+
+SET SERVEROUTPUT ON;
+Create or replace Trigger tr_super
+Before Insert Or Delete or Update on super
+For each row
+Enable
+Declare
+v_user Varchar2(50);
+Begin
+Select user into v_user from dual;
+If inserting then
+Dbms_output.put_line('one row just inserted
+ by' || v_user);
+Elsif deleting then
+Dbms_output.put_line('one row just deleted
+ by' || v_user);
+Elsif Updating then
+Dbms_output.put_line('one row just updated
+ by' || v_user);
+End if;
+End;
+/
+Insert into super values('batman');
+Update super 
+Set sh_name='superman'
+Where sh_name='batman';
+Delete from super
+Where sh_name='superman';
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,9 @@
+Declare
+v_num Number:=9;
+Begin
+If v_num<10 then
+DBMS_OUTPUT.PUT_LINE('Inside if'); // prints only when condition is true
+End if;
+DBMS_OUTPUT.PUT_LINE('outside if'); //always printed
+End;/
+

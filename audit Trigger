@@ -1,0 +1,58 @@
+CREATE TABLE super (
+    sh_name VARCHAR2(20)
+);
+
+CREATE TABLE sh_audit (
+    new_name   VARCHAR2(50),
+    old_name   VARCHAR2(50),
+    user_name  VARCHAR2(50),
+    entry_date VARCHAR2(50),
+    operation  VARCHAR2(30)
+);
+
+SET SERVEROUTPUT ON;
+
+CREATE OR REPLACE TRIGGER super_audit
+BEFORE INSERT OR DELETE OR UPDATE ON super
+FOR EACH ROW
+ENABLE
+DECLARE
+    v_user VARCHAR2(50);
+    v_date VARCHAR2(30);
+BEGIN
+    SELECT USER,
+           TO_CHAR(SYSDATE, 'DD/MON/YYYY HH24:MI:SS')
+    INTO v_user, v_date
+    FROM dual;
+
+    IF INSERTING THEN
+        INSERT INTO sh_audit
+            (new_name, old_name, user_name, entry_date, operation)
+        VALUES
+            (:NEW.sh_name, NULL, v_user, v_date, 'Insert');
+
+    ELSIF DELETING THEN
+        INSERT INTO sh_audit
+            (new_name, old_name, user_name, entry_date, operation)
+        VALUES
+            (NULL, :OLD.sh_name, v_user, v_date, 'Delete');
+
+    ELSIF UPDATING THEN
+        INSERT INTO sh_audit
+            (new_name, old_name, user_name, entry_date, operation)
+        VALUES
+            (:NEW.sh_name, :OLD.sh_name, v_user, v_date, 'Update');
+    END IF;
+END;
+/
+INSERT INTO super VALUES ('Batman');
+
+UPDATE super
+SET sh_name = 'Ironman'
+WHERE sh_name = 'Batman';
+
+DELETE FROM super
+WHERE sh_name = 'Ironman';
+
+SELECT * FROM sh_audit;
+
