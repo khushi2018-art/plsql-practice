@@ -1,0 +1,38 @@
+CREATE TABLE super (
+    sh_name VARCHAR2(20)
+);
+
+
+Create table super_backup
+as select * from super
+where 1=2;   
+
+Create or replace Trigger sh_backup
+Before insert or delete or update on super
+For each row
+Enable
+Begin
+If inserting then 
+Insert into super_backup(sh_name)
+Values (:New.sh_name);
+Elsif deleting then
+Delete from super_backup
+Where sh_name=:old.sh_name;
+Elsif updating then
+Update super_backup
+Set sh_name=:new.sh_name
+Where sh_name=:old.sh_name;
+End if;
+End;
+/
+
+Select * from super;
+Select * from super_backup;
+Insert into super values('Batman');
+Insert into super values('superman');
+Update super set sh_name='Ironman'
+Where sh_name='batman';
+Delete from super where sh_name='superman';
+
+
+
