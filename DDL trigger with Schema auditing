@@ -1,0 +1,26 @@
+Create Table schema_audit(
+ddl_date DATE,
+ddl_user VARCHAR2(20),
+object_created  VARCHAR2(20),
+object_name VARCHAR2(20),
+ddl_operation VARCHAR2(20)
+);
+Create or replace Trigger hr_audit_tr
+After DDL on SCHEMA
+Begin
+Insert into schema_audit values(
+Sysdate,
+Sys_context('USERENV','CURRENT_USER'),
+Ora_dict_obj_type, 
+Ora_dict_obj_name,
+Ora_sysevent
+);
+End;
+/
+Create table khushi(r_num Number);
+Select * from schema_audit; 
+Insert into khushi values(8);
+Truncate table khushi;
+Select * from schema_audit; 
+Drop table khushi;
+Select * from schema_audit; 
