@@ -1,0 +1,20 @@
+Create table hr_event_audit(
+Event_type varchar2(50),
+Logon_date Date,
+Logon_time VARCHAR2(50),
+Logof_date Date,
+Logof_time VARCHAR2(50),
+);
+Create or replace trigger hr_logon_audit
+After logon on schema
+Begin
+Insert into hr_evnt_audit values(
+Ora_sysevent,
+NULL,
+NULL,
+Sysdate,
+To_char(sysdate,'hh24:mi:ss'),
+);
+Commit;
+End;
+/
