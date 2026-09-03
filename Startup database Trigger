@@ -1,0 +1,22 @@
+Create table startup_audit
+(
+Event_type VARCHAR2(30),
+Event_date Date,
+Event_time VARCHR2(15)
+);
+
+Create or replace trigger tr_startup_audit
+After startup on database
+Begin
+Insert into tr_startup_audit values(
+Ora_sysevent,
+Sysdate,
+To_char(sysdate,'hh24:mm:ss'),
+);
+End;
+/
+
+
+
+
+
