@@ -1,0 +1,12 @@
+Create or replace trigger io_update
+Instead of update on vw_RR
+For each row
+Begin
+Update trainer set full_name=:new.Full_name
+Where full_name=:old.full_name;
+Update subject set subject_name=:new.subject_name
+Where subject_name=:old.subject_name;
+End;
+/
+Update trainer set full_name='Rutu'
+Where full_name='Oracle';
