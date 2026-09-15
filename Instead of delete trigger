@@ -1,0 +1,13 @@
+Create or replace trigger io_update
+Instead of delete on vw_RR
+For each row
+Begin
+Delete from trainer 
+Where full_name=:old.full_name;
+Delete from subject 
+Where subject_name=:old.subject_name;
+End;
+/
+Delete from vw_RR 
+Where full_name='Rutu';
+
