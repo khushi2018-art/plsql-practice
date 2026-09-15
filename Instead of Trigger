@@ -1,0 +1,21 @@
+create table trainer(
+    Full_name varchar2(50);
+)
+create table sub(
+    Subject_name Varchar2(50);
+)
+Insert into trainer values('Khushi Gupta');
+Insert into sub values('Oracle');
+
+create view vw_RR as
+select Full_name , Subject_name from trainer, sub;
+
+Create or replace trigger tr_insert
+Instead of insert on vw_RR
+for each row
+Begin
+insert into trainer(Full_name) values(:new.Full_name);
+insert into sub(Subject_name) values(:new.Subject_name);
+End;
+/
+Insert into vw_RR values('khushi','Maths');
