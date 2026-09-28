@@ -1,0 +1,11 @@
+Create or replace procedure khushi is
+Var_name Varchar2(20):='India';
+Var_web Varchar2(20):='Goa';
+Begin
+Dbms_output.put_line('I am from ' ||var_web||' in '||var_name);
+
+End khushi;
+/
+
+Execute khushi;
+
