@@ -1,0 +1,20 @@
+Create or replace procedure third(p_salary out  number)
+Is
+Begin
+Select Max(salary)
+Into p_salary
+From employees
+Where salary<(select max(salary) from employees
+Where salary<(
+Select max(salary) 
+From employees));
+End;
+/
+
+DECLARE
+v_salary NUMBER;
+begin
+    third(v_salary);
+  DBMS_OUTPUT.PUT_LINE('3rd Highest Salary = ' || v_salary);
+END;
+/
