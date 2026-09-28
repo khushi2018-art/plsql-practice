@@ -1,0 +1,15 @@
+Declare
+v_name Varchar2(30);
+Cursor n_CR (var_e_id VaRCHAR2) IS
+Select first_name from employees
+Where employee_id <var_e_id;
+Begin
+Open n_CR(105);
+Loop
+Fetch n_cr into v_name;
+Exit when n_cr%NOTFOUND;
+DBMS_output.put_line(v_name);
+End loop;
+Close n_cr;
+End;
+/

@@ -1,0 +1,14 @@
+Declare
+v_name VARCHAR2(30);
+Cursor cur_RR is
+Select first_name from emp
+Where emp_id<105;
+Begin
+Open cur_RR;
+Loop
+Fetch cur_RR into v_name; 
+DBMS_output.put_line(v_name);
+Exit when cur_RR%NOTFOUND;
+End loop;
+Close cur_RR;
+End;

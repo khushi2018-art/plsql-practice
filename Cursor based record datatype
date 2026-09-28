@@ -1,0 +1,16 @@
+Declare 
+Cursor khushi is
+Select first_name, salary from employees
+Where employee_id=100; 
+
+Var_emp khushi%ROWTYPE;
+
+Begin
+Open khushi;
+Fetch khushi into var_emp;
+
+Dbms_output.put_line(var_emp.first_name);
+Dbms_output.put_line(var_emp.salary);
+
+Close khushi;
+End;

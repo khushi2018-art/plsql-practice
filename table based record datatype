@@ -1,0 +1,17 @@
+Declare
+v_emp employees%Rowtype; 
+Begin
+Select* into v_emp from employees
+Where employee_id=200;
+
+Dbms_output.put_line(v_emp.first_name ||' '||v_emp.salary);
+End;
+
+Record_name.field_name
+Declare
+v_emp employees%ROWTYPE;
+Begin
+ Select first_name into v_emp.first_name from employees
+Where employee_id=100;
+Dbms_output.put_line(v_emp.first_name);
+End;

@@ -1,0 +1,9 @@
+Cursor cur_RR is
+Select first_name,last_name from employees
+Where employee_id>200;
+Begin
+For L_idx in cur_RR
+Loop
+DBMS_Output.put_line(L_idx.first_name ||' '||L_idx.last_name);
+End loop;
+End;
