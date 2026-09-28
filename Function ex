@@ -1,0 +1,12 @@
+Pi constant number(7,3):=3.141;
+Area Number(7,3);
+ Begin
+Area:=pi*(radius*radius);
+Return area;
+End;
+/  
+
+Begin 
+Dbms_output.put_line(circle_area(25));
+End;
+/
