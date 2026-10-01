@@ -1,0 +1,21 @@
+Create or replace function add_num
+(var_1 Number,var_2 Number default 0,var_3 Number)
+Return number
+Is
+Begin
+Dbms_output.put_line('var_1->' ||var_1);
+Dbms_output.put_line('var_2->' ||var_2);
+Dbms_output.put_line('var_3->' ||var_3);
+Return var_1+var_2+var_3;
+End;
+/
+
+Declare
+Result number;
+Begin
+Result:=add_num(var_3=>5,var_1=>2);
+Dbms_output.put_line('result->' ||result);
+End;
+/
+
+
